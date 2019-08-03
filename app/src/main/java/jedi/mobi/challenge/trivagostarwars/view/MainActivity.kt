@@ -1,10 +1,11 @@
-package jedi.mobi.challenge.trivagostarwars
+package jedi.mobi.challenge.trivagostarwars.view
 
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import jedi.mobi.challenge.trivagostarwars.R
 
 class MainActivity : AppCompatActivity() {
 

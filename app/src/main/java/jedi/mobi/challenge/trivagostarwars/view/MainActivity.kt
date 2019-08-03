@@ -26,6 +26,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
+
+        val id = 1L //todo get id by click on
+
+        showCharacter(id) //todo
+    }
+
+    private fun showCharacter(id: Long) {
+        with(supportFragmentManager.beginTransaction()) {
+            add(R.id.container, CharacterFragment.newInstance(id), CharacterFragment.TAG)
+            commit()
+        }
     }
 
 }

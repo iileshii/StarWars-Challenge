@@ -1,15 +1,15 @@
 package jedi.mobi.challenge.trivagostarwars.view
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import jedi.mobi.challenge.trivagostarwars.domain.Planet
 import jedi.mobi.challenge.trivagostarwars.domain.StarWarsCharacter
+import jedi.mobi.challenge.trivagostarwars.repository.RepositoryFabric
 
 class CharacterViewModel : ViewModel() {
 
     private var currentId: Long? = null
     private var liveData: LiveData<StarWarsCharacter>? = null
+    private val repository by lazy { RepositoryFabric.getCharacterRepository() }
 
     fun getCharacter(id: Long): LiveData<StarWarsCharacter> {
         return liveData?.let {
@@ -28,10 +28,5 @@ class CharacterViewModel : ViewModel() {
                 liveData = it
             }
 
-    private fun loadCharacter(id: Long): LiveData<StarWarsCharacter> {
-        //todo add loading data from repository
-        return MutableLiveData<StarWarsCharacter>().apply {
-            value = StarWarsCharacter("TestName", "brth year test", 1f, 1f, 1f, emptyList(), Planet(100L), emptyList())
-        }
-    }
+    private fun loadCharacter(id: Long) = repository.loadItem(id)
 }

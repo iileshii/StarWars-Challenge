@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="color_primary">@color/blue_free_speech</color>
+    <color name="color_primary_dark">@color/blue_tory</color>
+    <color name="color_accent">@color/blue_iris</color>
+    <color name="color_primary_light">@color/periwinkle</color>
+
+    <color name="background">@color/white</color>
+
+    <color name="icons">@color/white</color>
+
+    <color name="dividerColor">@color/silver</color>
+</resources>

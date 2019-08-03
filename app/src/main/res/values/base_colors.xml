@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#ffffff</color>
+
+    <color name="nero">#212121</color>
+    <color name="grey">#757575</color>
+    <color name="silver">#BDBDBD</color>
+
+    <color name="blue_free_speech">#3F51B5</color>
+    <color name="blue_tory">#303F9F</color>
+    <color name="blue_iris">#00BCD4</color>
+
+    <color name="periwinkle">#C5CAE9</color>
+</resources>

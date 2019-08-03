@@ -1,10 +1,12 @@
 package jedi.mobi.challenge.trivagostarwars.repository
 
-import jedi.mobi.challenge.trivagostarwars.domain.StarWarsCharacter
-
 object RepositoryFabric {
 
-    fun getCharacterRepository(): IDataRepository<StarWarsCharacter> {
+    fun getCharacterRepository(): ICharacterRepository {
         return CharacterRepository.instance
+    }
+
+    fun getCharacterListRepository(): ICharacterListRepository {
+        return CharacterListRepository.instance
     }
 }

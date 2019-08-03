@@ -2,7 +2,7 @@ package jedi.mobi.challenge.trivagostarwars.domain
 
 import java.util.*
 
-data class Character(
+data class StarWarsCharacter(
     val name: String,
     val birthYear: String,
     val heightCm: Float,

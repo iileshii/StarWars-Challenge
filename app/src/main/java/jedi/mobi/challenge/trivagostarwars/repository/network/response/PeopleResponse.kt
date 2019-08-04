@@ -1,6 +1,7 @@
 package jedi.mobi.challenge.trivagostarwars.repository.network.response
 
 import jedi.mobi.challenge.trivagostarwars.domain.StarWarsCharacter
+import jedi.mobi.challenge.trivagostarwars.domain.StarWarsCharacterListItem
 import jedi.mobi.challenge.trivagostarwars.repository.network.getIdFromUrl
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -30,6 +31,10 @@ internal fun PeopleResponse.toStarWarsCharacter(): StarWarsCharacter {
         -1L, //todo
         emptyList() //todo
     )
+}
+
+internal fun PeopleResponse.toStarWarsCharacterListItem(): StarWarsCharacterListItem {
+    return StarWarsCharacterListItem(url.getIdFromUrl(), name, birthYear)
 }
 
 private fun inchFromCm(cm: Float): Float {

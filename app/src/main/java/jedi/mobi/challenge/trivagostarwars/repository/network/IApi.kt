@@ -1,16 +1,13 @@
 package jedi.mobi.challenge.trivagostarwars.repository.network
 
-import jedi.mobi.challenge.trivagostarwars.repository.network.response.FilmResponse
-import jedi.mobi.challenge.trivagostarwars.repository.network.response.PeopleResponse
-import jedi.mobi.challenge.trivagostarwars.repository.network.response.PlanetResponse
-import jedi.mobi.challenge.trivagostarwars.repository.network.response.SpeciesResponse
+import jedi.mobi.challenge.trivagostarwars.repository.network.response.*
 import retrofit2.http.GET
 import retrofit2.http.Path
 
 internal interface IApi {
 
     @GET("people/")
-    suspend fun getPeople(): List<PeopleResponse>
+    suspend fun getPeople(): PeopleListResponse
 
     @GET("people/{id}/")
     suspend fun getPeople(@Path("id") id: Long): PeopleResponse

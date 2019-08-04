@@ -1,8 +1,10 @@
 package jedi.mobi.challenge.trivagostarwars.repository
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.liveData
 import jedi.mobi.challenge.trivagostarwars.domain.StarWarsCharacterListItem
+import jedi.mobi.challenge.trivagostarwars.repository.network.ApiProvider
+import jedi.mobi.challenge.trivagostarwars.repository.network.response.toStarWarsCharacterListItem
 
 internal class CharacterListRepository private constructor() : ICharacterListRepository {
 
@@ -10,23 +12,12 @@ internal class CharacterListRepository private constructor() : ICharacterListRep
         val instance: ICharacterListRepository by lazy { CharacterListRepository() }
     }
 
+    private val api = ApiProvider.api
+
     override fun loadList(): LiveData<List<StarWarsCharacterListItem>> {
-        //todo remove stub
-        return MutableLiveData<List<StarWarsCharacterListItem>>().apply {
-            value = listOf(
-                StarWarsCharacterListItem(1, "TestName", "brth year test"),
-                StarWarsCharacterListItem(2, "SecondCharacter", "1100BBR"),
-                StarWarsCharacterListItem(3, "Third", "1100BBR"),
-                StarWarsCharacterListItem(11, "TestName", "brth year test"),
-                StarWarsCharacterListItem(12, "SecondCharacter", "1100BBR"),
-                StarWarsCharacterListItem(13, "Third", "1100BBR"),
-                StarWarsCharacterListItem(21, "TestName", "brth year test"),
-                StarWarsCharacterListItem(22, "SecondCharacter", "1100BBR"),
-                StarWarsCharacterListItem(23, "Third", "1100BBR"),
-                StarWarsCharacterListItem(31, "TestName", "brth year test"),
-                StarWarsCharacterListItem(32, "SecondCharacter", "1100BBR"),
-                StarWarsCharacterListItem(33, "Third", "1100BBR")
-            )
+        return liveData {
+            val source = api.getPeople().results.map { it.toStarWarsCharacterListItem() }
+            emit(source)
         }
     }
 }

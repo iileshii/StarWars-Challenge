@@ -4,5 +4,5 @@ import androidx.lifecycle.LiveData
 import jedi.mobi.challenge.trivagostarwars.domain.StarWarsCharacter
 
 interface ICharacterRepository {
-    fun loadItem(id: Long): LiveData<StarWarsCharacter>
+    fun loadPeople(id: Long): LiveData<StarWarsCharacter>
 }

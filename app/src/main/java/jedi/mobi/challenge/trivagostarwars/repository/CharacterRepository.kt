@@ -1,9 +1,11 @@
 package jedi.mobi.challenge.trivagostarwars.repository
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import jedi.mobi.challenge.trivagostarwars.domain.Planet
+import androidx.lifecycle.liveData
 import jedi.mobi.challenge.trivagostarwars.domain.StarWarsCharacter
+import jedi.mobi.challenge.trivagostarwars.repository.network.ApiProvider
+import jedi.mobi.challenge.trivagostarwars.repository.network.response.toStarWarsCharacter
+
 
 internal class CharacterRepository private constructor() : ICharacterRepository {
 
@@ -11,14 +13,11 @@ internal class CharacterRepository private constructor() : ICharacterRepository 
         val instance: ICharacterRepository by lazy { CharacterRepository() }
     }
 
-    override fun loadItem(id: Long): LiveData<StarWarsCharacter> {
-        //todo remove stub
-        return MutableLiveData<StarWarsCharacter>().apply {
-            value = if (id % 2 == 0L) {
-                StarWarsCharacter("TestName", "brth year test", 1f, 1f, 1f, emptyList(), Planet(100L), emptyList())
-            } else {
-                StarWarsCharacter("SecondCharacter", "1100BBR", 1f, 1f, 1f, emptyList(), Planet(100L), emptyList())
-            }
+    private val api = ApiProvider.api
+
+    override fun loadPeople(id: Long): LiveData<StarWarsCharacter> {
+        return liveData {
+            emit(api.getPeople(id).toStarWarsCharacter())
         }
     }
 }

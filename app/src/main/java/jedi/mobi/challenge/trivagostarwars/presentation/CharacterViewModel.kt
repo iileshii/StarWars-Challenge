@@ -28,5 +28,5 @@ class CharacterViewModel : ViewModel() {
                 liveData = it
             }
 
-    private fun loadCharacter(id: Long) = repository.loadItem(id)
+    private fun loadCharacter(id: Long) = repository.loadPeople(id)
 }

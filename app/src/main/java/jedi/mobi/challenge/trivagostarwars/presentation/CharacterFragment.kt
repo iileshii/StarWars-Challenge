@@ -42,5 +42,8 @@ class CharacterFragment : DialogFragment() {
     private fun updateCharacter(character: StarWarsCharacter) {
         name.text = character.name
         birth_year.text = character.birthYear
+        height_cm.text = character.heightCm.toString()
+        height_in.text = character.heightInch.toString()
+        height_ft.text = character.heightFeet.toString()
     }
 }

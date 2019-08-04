@@ -27,16 +27,13 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_main)
 
-        val id = 1L //todo get id by click on
-
-        showCharacter(id) //todo
+        showCharacterSearchView()
     }
 
-    private fun showCharacter(id: Long) {
+    private fun showCharacterSearchView() {
         with(supportFragmentManager.beginTransaction()) {
             add(R.id.container, CharacterListFragment.newInstance(), CharacterListFragment.TAG)
             commit()
         }
     }
-
 }

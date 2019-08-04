@@ -1,4 +1,4 @@
-package jedi.mobi.challenge.trivagostarwars.view
+package jedi.mobi.challenge.trivagostarwars.presentation
 
 import android.app.Activity
 import android.content.Context

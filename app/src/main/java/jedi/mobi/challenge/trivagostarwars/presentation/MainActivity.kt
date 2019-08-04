@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun showCharacter(id: Long) {
         with(supportFragmentManager.beginTransaction()) {
-            add(R.id.container, CharacterFragment.newInstance(id), CharacterFragment.TAG)
+            add(R.id.container, CharacterListFragment.newInstance(), CharacterListFragment.TAG)
             commit()
         }
     }

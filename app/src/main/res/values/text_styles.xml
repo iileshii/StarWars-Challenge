@@ -1,0 +1,15 @@
+<resources>
+
+    <style name="AppTheme.Text">
+        <item name="android:textSize">@dimen/text_size_medium</item>
+    </style>
+
+    <style name="AppTheme.Text.Primary">
+        <item name="android:textColor">@color/primary_text</item>
+    </style>
+
+    <style name="AppTheme.Text.Secondary">
+        <item name="android:textColor">@color/secondary_text</item>
+    </style>
+
+</resources>

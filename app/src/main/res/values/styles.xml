@@ -11,4 +11,14 @@
         <item name="android:windowBackground">@drawable/splash</item>
     </style>
 
+    <style name="AppTheme.Layout"/>
+
+    <style name="AppTheme.Layout.Main">
+        <item name="android:background">@color/background</item>
+    </style>
+
+    <style name="AppTheme.Layout.Selectable">
+        <item name="android:background">?attr/selectableItemBackground</item>
+    </style>
+
 </resources>

@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -20,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_character_list.*
 class CharacterListFragment : Fragment() {
 
     companion object {
-        val TAG = CharacterListFragment::class.java.simpleName
+        val TAG: String = CharacterListFragment::class.java.simpleName
 
         fun newInstance() = CharacterListFragment()
     }
@@ -28,7 +27,10 @@ class CharacterListFragment : Fragment() {
     private val adapter = CharacterListAdapter(::onItemClick)
 
     private fun onItemClick(item: StarWarsCharacterListItem) {
-        Toast.makeText(context, "click", Toast.LENGTH_SHORT).show()
+        childFragmentManager.beginTransaction().apply {
+            replace(R.id.container, CharacterFragment.newInstance(item.id), CharacterFragment.TAG)
+            commit()
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

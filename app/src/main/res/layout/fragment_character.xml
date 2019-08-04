@@ -4,6 +4,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
+    <!--here it's a bug: birth year view size is not updated when recycler updates data-->
     <TextView
             android:id="@+id/name"
             android:layout_width="match_parent"

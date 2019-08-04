@@ -16,7 +16,16 @@ internal class CharacterListRepository private constructor() : ICharacterListRep
             value = listOf(
                 StarWarsCharacterListItem(1, "TestName", "brth year test"),
                 StarWarsCharacterListItem(2, "SecondCharacter", "1100BBR"),
-                StarWarsCharacterListItem(3, "Third", "1100BBR")
+                StarWarsCharacterListItem(3, "Third", "1100BBR"),
+                StarWarsCharacterListItem(11, "TestName", "brth year test"),
+                StarWarsCharacterListItem(12, "SecondCharacter", "1100BBR"),
+                StarWarsCharacterListItem(13, "Third", "1100BBR"),
+                StarWarsCharacterListItem(21, "TestName", "brth year test"),
+                StarWarsCharacterListItem(22, "SecondCharacter", "1100BBR"),
+                StarWarsCharacterListItem(23, "Third", "1100BBR"),
+                StarWarsCharacterListItem(31, "TestName", "brth year test"),
+                StarWarsCharacterListItem(32, "SecondCharacter", "1100BBR"),
+                StarWarsCharacterListItem(33, "Third", "1100BBR")
             )
         }
     }

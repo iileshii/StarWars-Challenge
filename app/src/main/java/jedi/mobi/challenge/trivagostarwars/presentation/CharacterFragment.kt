@@ -4,19 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import jedi.mobi.challenge.trivagostarwars.R
 import jedi.mobi.challenge.trivagostarwars.domain.StarWarsCharacter
 import kotlinx.android.synthetic.main.fragment_character.*
 
-class CharacterFragment : Fragment() {
+class CharacterFragment : DialogFragment() {
 
     companion object {
         private const val KEY_CHARACTER_ID = "characterId"
 
-        val TAG = CharacterFragment::class.java.simpleName
+        val TAG: String = CharacterFragment::class.java.simpleName
 
         fun newInstance(characterId: Long) =
             CharacterFragment().apply {

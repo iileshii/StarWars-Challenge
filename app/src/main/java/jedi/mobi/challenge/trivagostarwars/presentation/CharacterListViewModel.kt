@@ -11,6 +11,4 @@ class CharacterListViewModel : ViewModel() {
     private val liveData: LiveData<List<StarWarsCharacterListItem>> by lazy { repository.loadList() }
 
     fun getCharacterList(): LiveData<List<StarWarsCharacterListItem>> = liveData
-
-    private fun loadCharacterList() = repository.loadList()
 }

@@ -75,7 +75,7 @@ class CharacterListFragment : Fragment() {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 onSearch(query)
-                return false
+                return true
             }
 
             override fun onQueryTextChange(newText: String): Boolean {

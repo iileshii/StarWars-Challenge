@@ -3,4 +3,5 @@
     <string name="name_title">Name</string>
     <string name="birth_year_title">Birth Year</string>
     <string name="height_title">Height\n(cm/in/ft)</string>
+    <string name="population_title">Population</string>
 </resources>

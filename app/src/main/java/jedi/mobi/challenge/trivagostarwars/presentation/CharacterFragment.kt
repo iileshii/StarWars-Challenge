@@ -15,17 +15,29 @@ class CharacterFragment : DialogFragment() {
 
     companion object {
         private const val KEY_CHARACTER_ID = "characterId"
-
-        val TAG: String = CharacterFragment::class.java.simpleName
-
-        fun newInstance(characterId: Long) =
-            CharacterFragment().apply {
-                arguments = Bundle().apply { putLong(KEY_CHARACTER_ID, characterId) }
-            }
     }
 
-    private val characterId: Long by lazy {
-        arguments?.getLong(KEY_CHARACTER_ID) ?: throw IllegalArgumentException("Can't work without character Id")
+    private var characterId: Long? = null
+    private lateinit var viewModel: CharacterViewModel
+    private val observer = Observer<StarWarsCharacter>(::updateCharacter)
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        characterId = arguments?.getLong(KEY_CHARACTER_ID)
+    }
+
+    fun updateCharacter(id: Long) {
+        viewModel.getCharacter(characterId).removeObserver(observer)
+        characterId = id
+        arguments?.putLong(KEY_CHARACTER_ID, id)
+        if (isVisible) {
+            observeCharacter()
+        }
+    }
+
+    private fun observeCharacter() {
+        viewModel.getCharacter(characterId).observe(viewLifecycleOwner, observer)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -35,8 +47,9 @@ class CharacterFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val viewModel = ViewModelProviders.of(this)[CharacterViewModel::class.java]
-        viewModel.getCharacter(characterId).observe(viewLifecycleOwner, Observer(::updateCharacter))
+        viewModel = ViewModelProviders.of(this)[CharacterViewModel::class.java]
+
+        observeCharacter()
     }
 
     private fun updateCharacter(character: StarWarsCharacter) {
@@ -45,5 +58,6 @@ class CharacterFragment : DialogFragment() {
         height_cm.text = character.heightCm.toString()
         height_in.text = character.heightInch.toString()
         height_ft.text = character.heightFeet.toString()
+        population.text = character.population.toString()
     }
 }

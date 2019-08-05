@@ -27,10 +27,7 @@ class CharacterListFragment : Fragment() {
     private val adapter = CharacterListAdapter(::onItemClick)
 
     private fun onItemClick(item: StarWarsCharacterListItem) {
-        childFragmentManager.beginTransaction().apply {
-            replace(R.id.container, CharacterFragment.newInstance(item.id), CharacterFragment.TAG)
-            commit()
-        }
+        (childFragmentManager.findFragmentById(R.id.container) as? CharacterFragment)?.updateCharacter(item.id)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

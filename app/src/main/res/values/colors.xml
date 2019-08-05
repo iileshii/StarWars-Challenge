@@ -7,5 +7,7 @@
 
     <color name="background">@color/white</color>
 
+    <color name="menu_icons">@color/white</color>
+
     <color name="divider_color">@color/silver</color>
 </resources>

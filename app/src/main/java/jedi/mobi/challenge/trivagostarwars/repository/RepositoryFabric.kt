@@ -1,6 +1,6 @@
 package jedi.mobi.challenge.trivagostarwars.repository
 
-import jedi.mobi.challenge.trivagostarwars.repository.network.ApiProvider
+import jedi.mobi.challenge.trivagostarwars.repository.network.CachedApiProvider
 import jedi.mobi.challenge.trivagostarwars.repository.network.IApi
 
 object RepositoryFabric {
@@ -18,6 +18,6 @@ object RepositoryFabric {
     }
 
     private fun getApi(): IApi {
-        return ApiProvider.api
+        return CachedApiProvider
     }
 }

@@ -10,8 +10,8 @@ internal object CachedApiProvider : IApi {
     private val speciesCache = Cache<SpeciesResponse>()
     private val api = ApiProvider.api
 
-    override suspend fun getPeople(): PeopleListResponse {
-        return api.getPeople()
+    override suspend fun getPeople(query: String): PeopleListResponse {
+        return api.getPeople(query)
             .also {
                 it.results
                     .forEach { peopleResponse ->

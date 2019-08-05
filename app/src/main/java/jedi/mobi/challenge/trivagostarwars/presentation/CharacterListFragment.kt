@@ -5,9 +5,11 @@ import android.os.Bundle
 import android.view.*
 import android.view.MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW
 import android.view.MenuItem.SHOW_AS_ACTION_IF_ROOM
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -25,7 +27,10 @@ class CharacterListFragment : Fragment() {
         fun newInstance() = CharacterListFragment()
     }
 
+    private lateinit var viewModel: CharacterListViewModel
     private val adapter = CharacterListAdapter(::onItemClick)
+    private val mediator = MediatorLiveData<List<StarWarsCharacterListItem>>()
+    private val observer = Observer(::updateList)
 
     private fun onItemClick(item: StarWarsCharacterListItem) {
         (childFragmentManager.findFragmentById(R.id.container) as? CharacterFragment)?.updateCharacter(item.id)
@@ -43,8 +48,9 @@ class CharacterListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val viewModel = ViewModelProviders.of(this)[CharacterListViewModel::class.java]
-        viewModel.getCharacterList().observe(viewLifecycleOwner, Observer(::updateList))
+        viewModel = ViewModelProviders.of(this)[CharacterListViewModel::class.java]
+        mediator.observe(viewLifecycleOwner, observer)
+        mediator.addSource(viewModel.getCharacterList(), observer)
 
         initRecycler(view.context)
     }
@@ -55,9 +61,9 @@ class CharacterListFragment : Fragment() {
         inflater?.inflate(R.menu.menu_search, menu)
 
         val item = menu?.findItem(R.id.action_search) ?: return
-        val safeContext = context ?: return
+        val safeThemedContext = (activity as? AppCompatActivity)?.supportActionBar?.themedContext ?: return
 
-        initSearchView(item, safeContext)
+        initSearchView(item, safeThemedContext)
     }
 
     private fun initSearchView(item: MenuItem, ctx: Context) {
@@ -68,7 +74,7 @@ class CharacterListFragment : Fragment() {
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                //todo implement action
+                onSearch(query)
                 return false
             }
 
@@ -76,6 +82,10 @@ class CharacterListFragment : Fragment() {
                 return false
             }
         })
+    }
+
+    private fun onSearch(query: String) {
+        mediator.addSource(viewModel.getCharacterList(query), observer)
     }
 
     private fun initRecycler(context: Context) {

@@ -9,9 +9,9 @@ import jedi.mobi.challenge.trivagostarwars.repository.network.response.PeopleRes
 
 internal class CharacterListRepository(private val api: IApi) : ICharacterListRepository {
 
-    override fun loadList(): LiveData<List<StarWarsCharacterListItem>> {
+    override fun loadList(query: String): LiveData<List<StarWarsCharacterListItem>> {
         return liveData {
-            val source = api.getPeople().results.map(::mapStarWarsCharacterListItem)
+            val source = api.getPeople(query).results.map(::mapStarWarsCharacterListItem)
             emit(source)
         }
     }

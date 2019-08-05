@@ -7,6 +7,6 @@ import kotlinx.serialization.Serializable
 internal data class SpeciesResponse(
     val name: String,
     val language: String,
-    @SerialName("homeworld") val homeWorld: String,
+    @SerialName("homeworld") val homeWorld: String?,
     val url: String
 )

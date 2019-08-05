@@ -81,7 +81,7 @@ internal class CharacterRepository(private val api: IApi) : ICharacterRepository
 
     private suspend fun mapSpecies(speciesResponseList: List<SpeciesResponse>): List<Species> {
         return speciesResponseList.map {
-            val planetResponse = loadPlanet(it.homeWorld.getIdFromUrl())
+            val planetResponse = it.homeWorld?.getIdFromUrl()?.let { id -> loadPlanet(id) }
             Species(it.name, it.language, mapName(planetResponse))
         }
     }
@@ -94,8 +94,8 @@ internal class CharacterRepository(private val api: IApi) : ICharacterRepository
         return planetResponse.population.toLong()
     }
 
-    private fun mapName(planetResponse: PlanetResponse): String {
-        return planetResponse.name
+    private fun mapName(planetResponse: PlanetResponse?): String {
+        return planetResponse?.name ?: "n/a"
     }
 
     private fun inchFromCm(cm: Float): Float {

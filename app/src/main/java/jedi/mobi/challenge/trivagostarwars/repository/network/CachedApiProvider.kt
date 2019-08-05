@@ -11,7 +11,14 @@ internal object CachedApiProvider : IApi {
     private val api = ApiProvider.api
 
     override suspend fun getPeople(): PeopleListResponse {
-        return api.getPeople() //todo
+        return api.getPeople()
+            .also {
+                it.results
+                    .forEach { peopleResponse ->
+                        val id = peopleResponse.url.getIdFromUrl()
+                        peopleCache.put(id, peopleResponse)
+                    }
+            }
     }
 
     override suspend fun getPeople(id: Long): PeopleResponse {

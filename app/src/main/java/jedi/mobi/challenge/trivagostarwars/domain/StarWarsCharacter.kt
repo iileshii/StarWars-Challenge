@@ -1,7 +1,5 @@
 package jedi.mobi.challenge.trivagostarwars.domain
 
-import java.util.*
-
 data class StarWarsCharacter(
     val id: Long,
     val name: String,
@@ -22,6 +20,6 @@ data class Species(
 
 data class Film(
     val title: String,
-    val releaseDate: Date,
+    val releaseDate: String,
     val openingCrawl: String
 )

@@ -18,21 +18,21 @@
             android:id="@+id/name_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_medium"
             android:textAppearance="@style/AppTheme.Text.Secondary"
-            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintBaseline_toBaselineOf="@id/name"
             app:layout_constraintEnd_toStartOf="@id/title_guideline"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/birth_year_title"
-            app:layout_constraintTop_toTopOf="parent"
             android:text="@string/name_title"/>
 
     <TextView
             android:id="@+id/name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_medium"
             android:textAppearance="@style/AppTheme.Text.Primary"
-            app:layout_constraintBaseline_toBaselineOf="@id/name_title"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintBottom_toTopOf="@id/birth_year"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@id/title_guideline"
             app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -40,20 +40,20 @@
             android:id="@+id/birth_year_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_medium"
             android:textAppearance="@style/AppTheme.Text.Secondary"
             app:layout_constraintEnd_toStartOf="@id/title_guideline"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/height_title"
-            app:layout_constraintTop_toBottomOf="@id/name_title"
+            app:layout_constraintBaseline_toBaselineOf="@id/birth_year"
             android:text="@string/birth_year_title"/>
 
     <TextView
             android:id="@+id/birth_year"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_medium"
             android:textAppearance="@style/AppTheme.Text.Primary"
-            app:layout_constraintBaseline_toBaselineOf="@id/birth_year_title"
+            app:layout_constraintBottom_toTopOf="@id/height_cm"
+            app:layout_constraintTop_toBottomOf="@id/name"
             app:layout_constraintStart_toEndOf="@id/title_guideline"
             app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -61,22 +61,22 @@
             android:id="@+id/height_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_medium"
             android:textAppearance="@style/AppTheme.Text.Secondary"
             app:layout_constraintEnd_toStartOf="@id/title_guideline"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/population_title"
-            app:layout_constraintTop_toBottomOf="@id/birth_year_title"
+            app:layout_constraintBaseline_toBaselineOf="@id/height_cm"
             android:text="@string/height_title"/>
 
     <TextView
             android:id="@+id/height_cm"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_medium"
             android:layout_marginEnd="@dimen/margin_medium"
             android:textAppearance="@style/AppTheme.Text.Primary"
-            app:layout_constraintBaseline_toBaselineOf="@id/height_title"
             app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintBottom_toTopOf="@id/population"
+            app:layout_constraintTop_toBottomOf="@id/birth_year"
             app:layout_constraintStart_toEndOf="@id/title_guideline"
             app:layout_constraintEnd_toStartOf="@id/height_in"/>
 
@@ -86,7 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/margin_medium"
             android:textAppearance="@style/AppTheme.Text.Primary"
-            app:layout_constraintBaseline_toBaselineOf="@id/height_title"
+            app:layout_constraintBaseline_toBaselineOf="@id/height_cm"
             app:layout_constraintStart_toEndOf="@id/height_cm"
             app:layout_constraintEnd_toStartOf="@id/height_ft"/>
 
@@ -95,7 +95,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textAppearance="@style/AppTheme.Text.Primary"
-            app:layout_constraintBaseline_toBaselineOf="@id/height_title"
+            app:layout_constraintBaseline_toBaselineOf="@id/height_cm"
             app:layout_constraintStart_toEndOf="@id/height_in"
             app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -103,22 +103,22 @@
             android:id="@+id/population_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_medium"
             android:textAppearance="@style/AppTheme.Text.Secondary"
             app:layout_constraintEnd_toStartOf="@id/title_guideline"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/species_title"
-            app:layout_constraintTop_toBottomOf="@id/height_title"
+            app:layout_constraintBaseline_toBaselineOf="@id/population"
             android:text="@string/population_title"/>
 
     <TextView
             android:id="@+id/population"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_medium"
             android:textAppearance="@style/AppTheme.Text.Primary"
-            app:layout_constraintBaseline_toBaselineOf="@id/population_title"
             app:layout_constraintStart_toEndOf="@id/title_guideline"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/species"
+            app:layout_constraintTop_toBottomOf="@id/height_cm"/>
 
     <TextView
             android:id="@+id/species_title"
@@ -128,14 +128,14 @@
             android:textAppearance="@style/AppTheme.Text.Secondary"
             app:layout_constraintEnd_toStartOf="@id/title_guideline"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/films_title"
-            app:layout_constraintTop_toBottomOf="@id/population_title"
+            app:layout_constraintTop_toTopOf="@id/species"
             android:text="@string/species_title"/>
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/species"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/margin_medium"
             app:layout_constraintTop_toBottomOf="@id/population"
             app:layout_constraintBottom_toTopOf="@id/films"
             app:layout_constraintStart_toEndOf="@id/title_guideline"
@@ -148,8 +148,7 @@
             android:textAppearance="@style/AppTheme.Text.Secondary"
             app:layout_constraintEnd_toStartOf="@id/title_guideline"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/species_title"
+            app:layout_constraintTop_toTopOf="@id/films"
             android:text="@string/films_title"/>
 
     <androidx.recyclerview.widget.RecyclerView

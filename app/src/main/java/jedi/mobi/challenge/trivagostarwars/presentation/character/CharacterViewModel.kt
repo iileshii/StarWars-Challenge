@@ -1,4 +1,4 @@
-package jedi.mobi.challenge.trivagostarwars.presentation
+package jedi.mobi.challenge.trivagostarwars.presentation.character
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

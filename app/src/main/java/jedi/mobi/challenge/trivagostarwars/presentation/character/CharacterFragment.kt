@@ -1,4 +1,4 @@
-package jedi.mobi.challenge.trivagostarwars.presentation
+package jedi.mobi.challenge.trivagostarwars.presentation.character
 
 import android.content.Context
 import android.os.Bundle
@@ -26,7 +26,8 @@ class CharacterFragment : DialogFragment() {
     private lateinit var viewModel: CharacterViewModel
     private val observer = Observer<StarWarsCharacter>(::updateCharacter)
     private val filmAdapter = CharacterDetailsFilmAdapter()
-    private val speciesAdapter = CharacterDetailsSpeciesAdapter()
+    private val speciesAdapter =
+        CharacterDetailsSpeciesAdapter()
 
     fun updateCharacter(id: Long) {
         viewModel.getCharacter(characterId).removeObserver(observer)
@@ -48,7 +49,9 @@ class CharacterFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        characterId = savedInstanceState?.getLong(KEY_CHARACTER_ID) ?: arguments?.getLong(KEY_CHARACTER_ID)
+        characterId = savedInstanceState?.getLong(KEY_CHARACTER_ID) ?: arguments?.getLong(
+            KEY_CHARACTER_ID
+        )
 
         initRecyclers(view.context)
 

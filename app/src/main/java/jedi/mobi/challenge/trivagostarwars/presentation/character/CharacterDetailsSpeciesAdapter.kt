@@ -1,4 +1,4 @@
-package jedi.mobi.challenge.trivagostarwars.presentation
+package jedi.mobi.challenge.trivagostarwars.presentation.character
 
 import android.view.LayoutInflater
 import android.view.View

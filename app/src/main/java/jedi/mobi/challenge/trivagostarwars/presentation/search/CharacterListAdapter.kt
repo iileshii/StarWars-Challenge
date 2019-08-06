@@ -1,4 +1,4 @@
-package jedi.mobi.challenge.trivagostarwars.presentation
+package jedi.mobi.challenge.trivagostarwars.presentation.search
 
 import android.view.LayoutInflater
 import android.view.View
@@ -21,7 +21,10 @@ internal class CharacterListAdapter(private val listener: (StarWarsCharacterList
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item_character, parent, false)
-        return CharacterViewHolder(listener, view)
+        return CharacterViewHolder(
+            listener,
+            view
+        )
     }
 
     override fun getItemCount() = characterList.size

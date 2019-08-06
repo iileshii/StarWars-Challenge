@@ -1,4 +1,4 @@
-package jedi.mobi.challenge.trivagostarwars.presentation
+package jedi.mobi.challenge.trivagostarwars.presentation.search
 
 import android.content.Context
 import android.os.Bundle
@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import jedi.mobi.challenge.trivagostarwars.R
 import jedi.mobi.challenge.trivagostarwars.domain.StarWarsCharacterListItem
+import jedi.mobi.challenge.trivagostarwars.presentation.character.CharacterFragment
 import kotlinx.android.synthetic.main.fragment_character_list.*
 
 class CharacterListFragment : Fragment() {

@@ -32,7 +32,6 @@ class CharacterFragment : DialogFragment() {
     fun updateCharacter(id: Long) {
         viewModel.getCharacter(characterId).removeObserver(observer)
         characterId = id
-        arguments?.putLong(KEY_CHARACTER_ID, id)
         if (isVisible) {
             observeCharacter()
         }
@@ -49,9 +48,11 @@ class CharacterFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        characterId = savedInstanceState?.getLong(KEY_CHARACTER_ID) ?: arguments?.getLong(
-            KEY_CHARACTER_ID
-        )
+        savedInstanceState?.let {
+            if (it.containsKey(KEY_CHARACTER_ID)) {
+                characterId = it.getLong(KEY_CHARACTER_ID)
+            }
+        }
 
         initRecyclers(view.context)
 

@@ -28,11 +28,6 @@ class CharacterFragment : DialogFragment() {
     private val filmAdapter = CharacterDetailsFilmAdapter()
     private val speciesAdapter = CharacterDetailsSpeciesAdapter()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        characterId = arguments?.getLong(KEY_CHARACTER_ID)
-    }
-
     fun updateCharacter(id: Long) {
         viewModel.getCharacter(characterId).removeObserver(observer)
         characterId = id
@@ -53,11 +48,18 @@ class CharacterFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        characterId = savedInstanceState?.getLong(KEY_CHARACTER_ID) ?: arguments?.getLong(KEY_CHARACTER_ID)
+
         initRecyclers(view.context)
 
         viewModel = ViewModelProviders.of(this)[CharacterViewModel::class.java]
 
         observeCharacter()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        characterId?.let { outState.putLong(KEY_CHARACTER_ID, it) }
     }
 
     private fun initRecyclers(context: Context) {

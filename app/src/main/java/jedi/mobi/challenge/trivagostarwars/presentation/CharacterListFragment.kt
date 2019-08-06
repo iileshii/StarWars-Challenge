@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -21,9 +20,13 @@ import kotlinx.android.synthetic.main.fragment_character_list.*
 
 class CharacterListFragment : Fragment() {
 
+    companion object {
+        const val KEY_SEARCH_QUERY = "search_query"
+    }
+
+    private var currentQuery: String? = null
     private lateinit var viewModel: CharacterListViewModel
     private val adapter = CharacterListAdapter(::onItemClick)
-    private val mediator = MediatorLiveData<List<StarWarsCharacterListItem>>()
     private val observer = Observer(::updateList)
 
     private fun onItemClick(item: StarWarsCharacterListItem) {
@@ -43,10 +46,11 @@ class CharacterListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProviders.of(this)[CharacterListViewModel::class.java]
-        mediator.observe(viewLifecycleOwner, observer)
-        mediator.addSource(viewModel.getCharacterList(), observer)
+        observeList()
 
         initRecycler(view.context)
+
+        currentQuery = savedInstanceState?.getString(KEY_SEARCH_QUERY)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
@@ -66,6 +70,12 @@ class CharacterListFragment : Fragment() {
         item.setShowAsAction(SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW or SHOW_AS_ACTION_IF_ROOM)
         item.actionView = searchView
 
+        if (currentQuery?.isNotEmpty() == true) {
+            item.expandActionView()
+            searchView.setQuery(currentQuery, true)
+            searchView.clearFocus()
+        }
+
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 onSearch(query)
@@ -78,9 +88,20 @@ class CharacterListFragment : Fragment() {
         })
     }
 
-    private fun onSearch(query: String) {
-        mediator.addSource(viewModel.getCharacterList(query), observer)
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString(KEY_SEARCH_QUERY, currentQuery)
     }
+
+    private fun onSearch(query: String) {
+        currentQuery = query
+        observeList()
+    }
+
+    private fun observeList() {
+        viewModel.getCharacterList(currentQuery.orEmpty()).observe(viewLifecycleOwner, observer)
+    }
+
 
     private fun initRecycler(context: Context) {
         recycler.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)

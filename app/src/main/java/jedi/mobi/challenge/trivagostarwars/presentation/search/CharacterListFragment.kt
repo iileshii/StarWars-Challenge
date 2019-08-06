@@ -71,12 +71,6 @@ class CharacterListFragment : Fragment() {
         item.setShowAsAction(SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW or SHOW_AS_ACTION_IF_ROOM)
         item.actionView = searchView
 
-        if (currentQuery?.isNotEmpty() == true) {
-            item.expandActionView()
-            searchView.setQuery(currentQuery, true)
-            searchView.clearFocus()
-        }
-
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 onSearch(query)
@@ -87,6 +81,12 @@ class CharacterListFragment : Fragment() {
                 return false
             }
         })
+
+        if (currentQuery?.isNotEmpty() == true) {
+            item.expandActionView()
+            searchView.setQuery(currentQuery, true)
+            searchView.clearFocus()
+        }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

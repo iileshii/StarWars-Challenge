@@ -1,4 +1,4 @@
-# Trivago-StarWars-Challenge
+# StarWars-Challenge
 An app to show StarWars Characters Info
 
 # CHALLENGE

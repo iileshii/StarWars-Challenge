@@ -30,7 +30,7 @@ internal class CharacterListAdapter(private val listener: (StarWarsCharacterList
         holder.update(characterList[position])
     }
 
-    inner class CharacterViewHolder(listener: (StarWarsCharacterListItem) -> Unit, itemView: View) :
+    class CharacterViewHolder(listener: (StarWarsCharacterListItem) -> Unit, itemView: View) :
         RecyclerView.ViewHolder(itemView) {
 
         private var currentItem: StarWarsCharacterListItem? = null

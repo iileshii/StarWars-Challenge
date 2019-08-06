@@ -1,12 +1,17 @@
 package jedi.mobi.challenge.trivagostarwars.presentation
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import jedi.mobi.challenge.trivagostarwars.R
 import jedi.mobi.challenge.trivagostarwars.domain.StarWarsCharacter
 import kotlinx.android.synthetic.main.fragment_character.*
@@ -20,7 +25,8 @@ class CharacterFragment : DialogFragment() {
     private var characterId: Long? = null
     private lateinit var viewModel: CharacterViewModel
     private val observer = Observer<StarWarsCharacter>(::updateCharacter)
-
+    private val filmAdapter = CharacterDetailsFilmAdapter()
+    private val speciesAdapter = CharacterDetailsSpeciesAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,9 +53,34 @@ class CharacterFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initRecyclers(view.context)
+
         viewModel = ViewModelProviders.of(this)[CharacterViewModel::class.java]
 
         observeCharacter()
+    }
+
+    private fun initRecyclers(context: Context) {
+        initRecycler(context, films, filmAdapter)
+        initRecycler(context, species, speciesAdapter)
+    }
+
+    private fun initRecycler(
+        context: Context,
+        recycler: RecyclerView,
+        adapter: RecyclerView.Adapter<out RecyclerView.ViewHolder>
+    ) {
+        recycler.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+
+        val divider = DividerItemDecoration(context, RecyclerView.VERTICAL)
+            .apply {
+                val drawable = ContextCompat.getDrawable(context, R.drawable.divider)
+                drawable?.let { setDrawable(it) }
+            }
+
+        recycler.addItemDecoration(divider)
+
+        recycler.adapter = adapter
     }
 
     private fun updateCharacter(character: StarWarsCharacter) {
@@ -59,5 +90,7 @@ class CharacterFragment : DialogFragment() {
         height_in.text = character.heightInch.toString()
         height_ft.text = character.heightFeet.toString()
         population.text = character.population.toString()
+        speciesAdapter.updateData(character.species)
+        filmAdapter.updateData(character.films)
     }
 }

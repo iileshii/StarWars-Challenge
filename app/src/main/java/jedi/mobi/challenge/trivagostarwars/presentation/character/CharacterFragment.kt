@@ -94,7 +94,7 @@ class CharacterFragment : DialogFragment() {
         height_cm.text = character.heightCm.toString()
         height_in.text = character.heightInch.toString()
         height_ft.text = character.heightFeet.toString()
-        population.text = character.population.toString()
+        population.text = character.population
         speciesAdapter.updateData(character.species)
         filmAdapter.updateData(character.films)
     }

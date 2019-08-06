@@ -28,6 +28,7 @@
             android:id="@+id/opening_crawl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_medium"
             android:textAppearance="@style/AppTheme.Text.Secondary"
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"

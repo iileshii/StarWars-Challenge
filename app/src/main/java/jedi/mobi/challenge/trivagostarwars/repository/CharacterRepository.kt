@@ -63,7 +63,7 @@ internal class CharacterRepository(private val api: IApi) : ICharacterRepository
         val heightFeet = feetFromInch(heightInches)
 
         val species: List<Species> = mapSpecies(speciesResponseList)
-        val population: Long = mapPopulation(planetResponse)
+        val population: String = mapPopulation(planetResponse)
         val films: List<Film> = mapFilms(filmResponseList)
 
         return StarWarsCharacter(
@@ -90,8 +90,8 @@ internal class CharacterRepository(private val api: IApi) : ICharacterRepository
         return filmResponseList.map { Film(it.title, it.releaseDate, it.openingCrawl) }
     }
 
-    private fun mapPopulation(planetResponse: PlanetResponse): Long {
-        return planetResponse.population.toLong()
+    private fun mapPopulation(planetResponse: PlanetResponse): String {
+        return planetResponse.population
     }
 
     private fun mapName(planetResponse: PlanetResponse?): String {

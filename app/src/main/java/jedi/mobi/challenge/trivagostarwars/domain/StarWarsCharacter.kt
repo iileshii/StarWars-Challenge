@@ -8,7 +8,7 @@ data class StarWarsCharacter(
     val heightInch: Float,
     val heightFeet: Float,
     val species: List<Species>,
-    val population: Long,
+    val population: String,
     val films: List<Film>
 )
 

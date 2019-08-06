@@ -24,16 +24,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_main)
-
-        showCharacterSearchView()
-    }
-
-    private fun showCharacterSearchView() {
-        with(supportFragmentManager.beginTransaction()) {
-            add(R.id.container, CharacterListFragment.newInstance(), CharacterListFragment.TAG)
-            commit()
-        }
     }
 }

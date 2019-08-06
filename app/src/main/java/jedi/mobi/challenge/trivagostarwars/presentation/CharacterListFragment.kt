@@ -21,12 +21,6 @@ import kotlinx.android.synthetic.main.fragment_character_list.*
 
 class CharacterListFragment : Fragment() {
 
-    companion object {
-        val TAG: String = CharacterListFragment::class.java.simpleName
-
-        fun newInstance() = CharacterListFragment()
-    }
-
     private lateinit var viewModel: CharacterListViewModel
     private val adapter = CharacterListAdapter(::onItemClick)
     private val mediator = MediatorLiveData<List<StarWarsCharacterListItem>>()

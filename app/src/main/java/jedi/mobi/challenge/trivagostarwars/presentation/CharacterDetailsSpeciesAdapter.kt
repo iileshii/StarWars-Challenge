@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import jedi.mobi.challenge.trivagostarwars.R
 import jedi.mobi.challenge.trivagostarwars.domain.Species
+import kotlinx.android.synthetic.main.list_item_species.view.*
 
 internal class CharacterDetailsSpeciesAdapter : RecyclerView.Adapter<CharacterDetailsSpeciesAdapter.ViewHolder>() {
 
@@ -30,7 +31,10 @@ internal class CharacterDetailsSpeciesAdapter : RecyclerView.Adapter<CharacterDe
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun update(data: Species) {
+        fun update(species: Species) {
+            itemView.name.text = species.name
+            itemView.language.text = species.language
+            itemView.homeworld.text = species.homeWorld
         }
     }
 }

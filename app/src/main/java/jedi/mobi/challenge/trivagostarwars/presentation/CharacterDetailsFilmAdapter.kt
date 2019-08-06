@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import jedi.mobi.challenge.trivagostarwars.R
 import jedi.mobi.challenge.trivagostarwars.domain.Film
+import kotlinx.android.synthetic.main.list_item_film.view.*
 
 internal class CharacterDetailsFilmAdapter : RecyclerView.Adapter<CharacterDetailsFilmAdapter.ViewHolder>() {
 
@@ -30,8 +31,10 @@ internal class CharacterDetailsFilmAdapter : RecyclerView.Adapter<CharacterDetai
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun update(data: Film) {
+        fun update(film: Film) {
+            itemView.title.text = film.title
+            itemView.date.text = film.releaseDate
+            itemView.opening_crawl.text = film.openingCrawl
         }
     }
 }
-

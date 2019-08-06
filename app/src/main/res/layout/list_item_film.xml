@@ -6,12 +6,33 @@
         android:layout_height="wrap_content">
 
     <TextView
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Film stub!"
-            app:layout_constraintTop_toTopOf="parent"
+            android:textAppearance="@style/AppTheme.Text.Primary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_medium"
+            android:textAppearance="@style/AppTheme.Text.Secondary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            app:layout_constraintBottom_toTopOf="@id/opening_crawl"/>
+
+    <TextView
+            android:id="@+id/opening_crawl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/AppTheme.Text.Secondary"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/date"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
